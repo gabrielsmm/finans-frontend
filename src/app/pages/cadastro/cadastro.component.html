@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card text-center">
+        <h2>Finanças Pessoais</h2>
+        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="Seu nome" formControlName="nome">
+            <input type="text" placeholder="E-mail" formControlName="email">
+            <input type="password" placeholder="Senha" formControlName="senha">
+            <input type="password" placeholder="Confirme sua senha" formControlName="confirmacaoSenha">
+
+            <!-- <div class="cross-validation-error-message alert alert-danger">
+                Senhas não conferem
+            </div> -->
+
+            <input type="submit" value="Cadastrar" [disabled]="!cadastroForm.valid">
+        </form>
+    </div>
+</div>
