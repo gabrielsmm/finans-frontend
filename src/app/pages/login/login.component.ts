@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/models/Usuario.model';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private loginService: LoginService,
-              private router: Router) {
+              private router: Router,
+              private appService: AppService) {
 
   }
 
@@ -33,8 +35,12 @@ export class LoginComponent implements OnInit {
     this.usuario = new Usuario(this.loginForm.value);
     this.loginService.login(this.usuario).subscribe({
       next: (data: HttpResponse<any>) => {
-        console.log(data.headers.get('Authorization'));
-        this.router.navigate(['/visao-geral']);
+        const token = data.headers.get('Authorization');
+        if (token) {
+          localStorage.setItem("token", token);
+          this.appService.usuarioAutenticado = true;
+          this.router.navigate(['/visao-geral']);
+        }
       },
       error: (err) => {
         console.error(err);
