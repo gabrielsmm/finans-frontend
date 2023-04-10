@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CadastroComponent } from './cadastro.component';
 import { CadastroRoutingModule } from './cadastro-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CadastroRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
   ]
 })
 export class CadastroModule { }

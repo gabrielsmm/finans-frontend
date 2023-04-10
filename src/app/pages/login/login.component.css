@@ -1,0 +1,14 @@
+.d-flex {
+    height: 100vh;
+}
+
+.card {
+    width: 35vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 8px 1px #CCC;
+}
+
+.card p {
+    color: #35835a;
+}

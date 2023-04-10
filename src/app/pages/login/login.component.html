@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="card text-center">
+        <h1>Finanças Pessoais</h1>
+        <p>Sua jornada financeira começa aqui. Entre para continuar.</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="E-mail" formControlName="email">
+            <input type="password" placeholder="Senha" formControlName="senha">
+
+            <div *ngIf="showErro" class="cross-validation-error-message alert alert-danger">
+                {{msgErro}}
+            </div>
+
+            <input type="submit" value="Entrar" 
+                   matTooltip="Verifique se as informações foram preenchidas" 
+                   [matTooltipDisabled]="loginForm.valid"
+                   [disabled]="!loginForm.valid">
+        </form>
+        <p>Ainda não possui cadastro? <a [routerLink]="['/cadastro']">Clique aqui</a></p>
+    </div>
+</div>

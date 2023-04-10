@@ -1,17 +1,22 @@
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex flex-column justify-content-center align-items-center">
     <div class="card text-center">
-        <h2>Finanças Pessoais</h2>
+        <h1>Finanças Pessoais</h1>
+        <p>Gerencie seu dinheiro de forma inteligente. Cadastre-se agora.</p>
         <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
             <input type="text" placeholder="Seu nome" formControlName="nome">
             <input type="text" placeholder="E-mail" formControlName="email">
             <input type="password" placeholder="Senha" formControlName="senha">
             <input type="password" placeholder="Confirme sua senha" formControlName="confirmacaoSenha">
 
-            <!-- <div class="cross-validation-error-message alert alert-danger">
-                Senhas não conferem
-            </div> -->
+            <div *ngIf="showErro" class="cross-validation-error-message alert alert-danger">
+                {{msgErro}}
+            </div>
 
-            <input type="submit" value="Cadastrar" [disabled]="!cadastroForm.valid">
+            <input type="submit" value="Cadastrar"
+                   matTooltip="Verifique se as informações foram preenchidas" 
+                   [matTooltipDisabled]="cadastroForm.valid"
+                   [disabled]="!cadastroForm.valid">
         </form>
+        <p>Já possui cadastro? <a [routerLink]="['/login']">Clique aqui</a></p>
     </div>
 </div>

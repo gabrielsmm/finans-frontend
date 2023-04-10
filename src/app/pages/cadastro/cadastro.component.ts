@@ -17,6 +17,8 @@ export const matches: ValidatorFn = (control: AbstractControl): ValidationErrors
 export class CadastroComponent implements OnInit {
 
   public usuario: Usuario = new Usuario();
+  public showErro: boolean = false;
+  public msgErro: string = '';
   
   public cadastroForm = new FormGroup({
     nome: new FormControl(this.usuario.nome, Validators.required),
@@ -35,6 +37,8 @@ export class CadastroComponent implements OnInit {
 
   onSubmit() {
     this.usuario = new Usuario(this.cadastroForm.value);
+    this.msgErro = "Erro";
+    this.showErro = true;
     // Cadastrar usuário
   }
 
