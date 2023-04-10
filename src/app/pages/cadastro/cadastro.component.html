@@ -8,8 +8,12 @@
             <input type="password" placeholder="Senha" formControlName="senha">
             <input type="password" placeholder="Confirme sua senha" formControlName="confirmacaoSenha">
 
-            <div *ngIf="showErro" class="cross-validation-error-message alert alert-danger">
+            <div *ngIf="showErro" class="alert alert-danger">
                 {{msgErro}}
+            </div>
+
+            <div *ngIf="showSucesso" class="alert alert-success">
+                Cadastro realizado com sucesso!
             </div>
 
             <input type="submit" value="Cadastrar"
