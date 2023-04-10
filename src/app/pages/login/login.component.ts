@@ -28,7 +28,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.appService.usuarioAutenticado = true;
+      this.router.navigate(['/visao-geral']);
+    }
   }
 
   onSubmit() {

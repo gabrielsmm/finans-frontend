@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(public appService: AppService) {
     
   }
 
@@ -19,6 +20,10 @@ export class HeaderComponent implements OnInit {
 
   showCollapse() {
     this.show = !this.show;
+  }
+
+  deslogar() {
+    this.appService.deslogar();
   }
 
 }
