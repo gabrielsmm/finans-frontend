@@ -6,8 +6,8 @@
             <input type="text" placeholder="E-mail" formControlName="email">
             <input type="password" placeholder="Senha" formControlName="senha">
 
-            <div *ngIf="showErro" class="cross-validation-error-message alert alert-danger">
-                {{msgErro}}
+            <div *ngIf="showErro" class="alert alert-danger">
+                E-mail ou senha incorretos
             </div>
 
             <input type="submit" value="Entrar" 
