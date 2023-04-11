@@ -11,7 +11,7 @@ a {
 }
 
 h1, h2, h3, h4, h5 {
-    color: #42996c;
+    color: #139153;
 }
 
 form {
@@ -30,8 +30,8 @@ input {
 .btn,
 button,
 input[type="submit"] {
-    background-color: #42996c;
-    color: #FFF;
+    background-color: #86eebb;
+    color: #0e6c3d;
     border: none;
     border-radius: 4px;
     padding: 10px 8px;
@@ -48,7 +48,8 @@ input[type="submit"] {
 
 input:disabled {
     cursor: not-allowed;
-    background-color: #9a4e55;
+    background-color: #ce7981;
+    color: #611e24;
 }
 
 button:hover,
