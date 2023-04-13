@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { VisaoGeralService } from './visao-geral.service';
 import { AppService } from 'src/app/app.service';
 import { Usuario } from 'src/app/models/Usuario.model';
-import { lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,15 +16,21 @@ export class VisaoGeralComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.getDados();
-  }
-
-  async getDados() {
-    const usuarioLogado: Usuario = await lastValueFrom(this.visaoGeralService.getUsuarioLogado());
-    if (!usuarioLogado) this.router.navigate(['/login']);
-    this.appService.usuarioLogado = usuarioLogado;
-
-    // Obter os dados para exibição
+    this.visaoGeralService.getUsuarioLogado().subscribe({
+      next: (data) => {
+        const usuarioLogado: Usuario = data;
+        if (!usuarioLogado) {
+          localStorage.removeItem("token");
+          this.router.navigate(['/login']);
+        }
+        this.appService.usuarioLogado = usuarioLogado;
+      },
+      error: (err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+        this.router.navigate(['/login']);
+      }
+    });
   }
   
 }

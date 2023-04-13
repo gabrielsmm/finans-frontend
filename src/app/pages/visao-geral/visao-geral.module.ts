@@ -4,6 +4,7 @@ import { VisaoGeralComponent } from './visao-geral.component';
 import { HeaderModule } from 'src/app/components/header/header.module';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -15,7 +16,8 @@ import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
     CommonModule,
     VisaoGeralRoutingModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    MatCardModule
   ]
 })
 export class VisaoGeralModule { }

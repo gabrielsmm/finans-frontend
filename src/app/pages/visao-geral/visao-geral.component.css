@@ -1,3 +1,31 @@
-.conteudo {
+.container {
     min-height: 80vh;
+}
+
+.card-principal {
+    margin-top: 20px;
+}
+
+.card-acoes {
+    flex: 0 1 180px;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    height: 50px;
+}
+
+.card-acoes p {
+    margin: 0;
+}
+
+.card-relatorios {
+    cursor: pointer;
+}
+
+.receita {
+    color: #139153;
+}
+
+.despesa {
+    color: #c01f2c;
 }

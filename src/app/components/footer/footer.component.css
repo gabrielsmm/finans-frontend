@@ -1,7 +1,9 @@
 .container-fluid {
-    background-color: #139153;
-    font-size: 1.2em;
-    color: #FFF;
+    background-color: transparent;
     position: absolute;
     bottom: 0;
+}
+
+.img-fluid {
+    opacity: .5;
 }
