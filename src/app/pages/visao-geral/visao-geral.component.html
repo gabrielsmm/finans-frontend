@@ -5,40 +5,47 @@
     <mat-card class="card-principal">
         <mat-card-content>
             <div class="row">
-                <div class="col-md-8 d-flex align-items-start justify-content-between">
-                    <p>Olá, {{appService.usuarioLogado.nome}}</p>
-                    <div class="saldo">
-                        <p>saldo geral</p>
-                        <p>R$ 0,00</p>
+                <div class="col-md-8">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <p>Olá, <b>{{appService.usuarioLogado.nome}}</b></p>
+                        <div class="saldo">
+                            <p>saldo geral</p>
+                            <p>R$ 200.00</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <mat-card class="card-acoes">
+                            <p>receita mensal</p>
+                            <p class="receita">R$ 0,00</p>
+                        </mat-card>
+                        <mat-card class="card-acoes">
+                            <p>despesa mensal</p>
+                            <p class="despesa">R$ 0,00</p>
+                        </mat-card>
+                        <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
+                            <p>ver relatórios</p>
+                            <span><i class="bi bi-graph-up-arrow"></i></span>
+                        </mat-card>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <p>Acesso rápido</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 d-flex align-items-center justify-content-between">
-                    <mat-card class="card-acoes">
-                        <p>receita mensal</p>
-                        <p class="receita">R$ 0,00</p>
-                    </mat-card>
-                    <mat-card class="card-acoes">
-                        <p>despesa mensal</p>
-                        <p class="despesa">R$ 0,00</p>
-                    </mat-card>
-                    <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
-                        <p>ver relatórios</p>
-                        <span><i class="bi bi-graph-up-arrow"></i></span>
-                    </mat-card>
-                </div>
-                <div class="col-md-4">
-                    
+                    <div>
+                        <p>Acesso rápido</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="btn-acesso-rapido">
+                            <i class="bi bi-dash-circle despesa"></i>
+                            <p>DESPESA</p>
+                        </div>     
+                        <div class="btn-acesso-rapido">
+                            <i class="bi bi-plus-circle receita"></i>
+                            <p>RECEITA</p>
+                        </div>     
+                    </div>
                 </div>
             </div>
         </mat-card-content>
     </mat-card>
-
 </div>
 
 <app-footer></app-footer>

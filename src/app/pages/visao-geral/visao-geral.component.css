@@ -29,3 +29,16 @@
 .despesa {
     color: #c01f2c;
 }
+
+.btn-acesso-rapido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.btn-acesso-rapido i {
+    font-size: 3em;
+    margin-bottom: 5px;
+}
