@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/Usuario.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTransacaoComponent } from 'src/app/dialogs/dialog-transacao/dialog-transacao.component';
+import { DialogOrcamentoComponent } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.component';
 
 @Component({
   selector: 'app-visao-geral',
@@ -47,7 +48,10 @@ export class VisaoGeralComponent implements OnInit {
   }
 
   openDialogOrcamento() {
-
+    this.dialog.open(DialogOrcamentoComponent, {
+      height: '500px',
+      width: '500px'
+    });
   }
   
 }

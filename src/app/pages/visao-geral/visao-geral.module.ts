@@ -6,6 +6,7 @@ import { FooterModule } from 'src/app/components/footer/footer.module';
 import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-transacao.module';
+import { DialogOrcamentoModule } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.module';
 
 
 
@@ -19,7 +20,8 @@ import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-t
     HeaderModule,
     FooterModule,
     MatCardModule,
-    DialogTransacaoModule
+    DialogTransacaoModule,
+    DialogOrcamentoModule
   ]
 })
 export class VisaoGeralModule { }

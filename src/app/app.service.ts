@@ -22,5 +22,20 @@ export class AppService {
   getDataFormatada(data: Date): string {
     return data.getFullYear() + "-" + ("0"+(data.getMonth()+1)).slice(-2) + "-" + ("0" + data.getDate()).slice(-2);
   }
+
+  getInicioMes(): Date {
+    const dataAtual = new Date();
+    return new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
+  }
+
+  getFimMes(): Date {
+    const dataAtual = new Date();
+    const inicioMes = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
+    return new Date(inicioMes.getFullYear(), inicioMes.getMonth() + 1, 0);
+  }
+
+  getMensagensErro(erro: any): string {
+    return erro.error.errors.map((erro: any) => erro.message).join(', ');
+  }
   
 }

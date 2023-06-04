@@ -1,0 +1,44 @@
+<div class="p-3">
+    <div class="d-flex justify-content-end">
+        <span class="fechar" (click)="fechar()">
+            <i class="bi bi-x"></i>
+        </span>
+    </div>
+    <h2 mat-dialog-title>{{texto}}</h2>
+    <div mat-dialog-content>
+        <form [formGroup]="orcamentoForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="nome">Nome</label>
+                    <input type="text" placeholder="Ex: Orçamento do mês atual" formControlName="nome" id="nome">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dataInicio">Data inicial</label>
+                    <input type="date" placeholder="Data de início" formControlName="dataInicio" id="dataInicio">
+                </div>
+                <div class="col-md-6">
+                    <label for="dataFim">Data final</label>
+                    <input type="date" placeholder="Data de fim" formControlName="dataFim" id="dataFim">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                    <label for="valor">Valor</label>
+                    <input placeholder="Valor" formControlName="valor" id="valor"
+                    currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                </div>
+            </div>
+            <div *ngIf="showErro" class="alert alert-danger">
+                Erro ao salvar orçamento: {{mensagemErro}}
+            </div>
+            <button class="check-btn" 
+            [disabled]="!orcamentoForm.valid"
+            matTooltip="Verifique se as informações foram corretamente preenchidas" 
+            [matTooltipDisabled]="orcamentoForm.valid">
+                <i class="bi bi-check-circle-fill"></i>
+            </button>
+        </form>
+    </div>
+</div>
