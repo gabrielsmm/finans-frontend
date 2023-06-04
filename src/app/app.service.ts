@@ -18,5 +18,9 @@ export class AppService {
     localStorage.removeItem("token");
     this.router.navigate(['/login']);
   }
+
+  getDataFormatada(data: Date): string {
+    return data.getFullYear() + "-" + ("0"+(data.getMonth()+1)).slice(-2) + "-" + ("0" + data.getDate()).slice(-2);
+  }
   
 }

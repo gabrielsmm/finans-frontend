@@ -33,13 +33,17 @@
                         <p>Acesso rápido</p>
                     </div>
                     <div class="d-flex align-items-center">
-                        <div class="btn-acesso-rapido">
-                            <i class="bi bi-dash-circle despesa"></i>
-                            <p>DESPESA</p>
+                        <div class="btn-acesso-rapido" (click)="openDialogOrcamento()">
+                            <i class="bi bi-currency-dollar orcamento"></i>
+                            <p>ORÇAMENTO</p>
                         </div>     
-                        <div class="btn-acesso-rapido">
+                        <div class="btn-acesso-rapido" (click)="openDialogTransacao(true)">
                             <i class="bi bi-plus-circle receita"></i>
                             <p>RECEITA</p>
+                        </div>
+                        <div class="btn-acesso-rapido" (click)="openDialogTransacao(false)">
+                            <i class="bi bi-dash-circle despesa"></i>
+                            <p>DESPESA</p>
                         </div>     
                     </div>
                 </div>

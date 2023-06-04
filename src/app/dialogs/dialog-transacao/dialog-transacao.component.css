@@ -1,0 +1,12 @@
+.fechar {
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.receita {
+    color: #139153;
+}
+
+.despesa {
+    color: #c01f2c;
+}

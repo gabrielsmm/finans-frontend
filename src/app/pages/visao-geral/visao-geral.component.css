@@ -22,14 +22,6 @@
     cursor: pointer;
 }
 
-.receita {
-    color: #139153;
-}
-
-.despesa {
-    color: #c01f2c;
-}
-
 .btn-acesso-rapido {
     display: flex;
     flex-direction: column;
@@ -39,6 +31,6 @@
 }
 
 .btn-acesso-rapido i {
-    font-size: 3em;
+    font-size: 2.7em;
     margin-bottom: 5px;
 }

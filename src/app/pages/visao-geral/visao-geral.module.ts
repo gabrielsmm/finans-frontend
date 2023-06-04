@@ -5,6 +5,7 @@ import { HeaderModule } from 'src/app/components/header/header.module';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
 import { MatCardModule } from '@angular/material/card';
+import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-transacao.module';
 
 
 
@@ -17,7 +18,8 @@ import { MatCardModule } from '@angular/material/card';
     VisaoGeralRoutingModule,
     HeaderModule,
     FooterModule,
-    MatCardModule
+    MatCardModule,
+    DialogTransacaoModule
   ]
 })
 export class VisaoGeralModule { }

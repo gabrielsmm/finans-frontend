@@ -1,4 +1,5 @@
-<div class="container-fluid sticky-top">
+<div class="background sticky-top">
+  <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" [routerLink]="['/visao-geral']">
             <img class="img-fluid" src="assets/img/logo.png" alt="Logo" width="110">
@@ -10,16 +11,16 @@
         <div class="collapse navbar-collapse justify-content-between" [ngClass]="{'show':show}" id="navbarToggler">
           <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/visao-geral']">visão geral</a>
+                <a class="nav-link" [routerLink]="['/visao-geral']" routerLinkActive="active-link">visão geral</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/orcamentos']">orçamentos</a>
+                <a class="nav-link" [routerLink]="['/orcamentos']" routerLinkActive="active-link">orçamentos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/transacoes']">transações</a>
+                <a class="nav-link" [routerLink]="['/transacoes']" routerLinkActive="active-link">transações</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/relatorios']">relatórios</a>
+                <a class="nav-link" [routerLink]="['/relatorios']" routerLinkActive="active-link">relatórios</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" [ngClass]="{'link-ativo': isHome}" [routerLink]="['/inicio']"><i class="bi bi-house"></i> INÍCIO</a>
@@ -33,12 +34,12 @@
           </ul>
 
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link"><i class="bi bi-nut-fill"></i></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"><i class="bi bi-bell-fill"></i></a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link"><i class="bi bi-person-circle"></i></a>
             </li>
@@ -48,4 +49,5 @@
           </ul>
         </div>
       </nav>
+  </div>
 </div>

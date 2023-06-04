@@ -3,6 +3,8 @@ import { VisaoGeralService } from './visao-geral.service';
 import { AppService } from 'src/app/app.service';
 import { Usuario } from 'src/app/models/Usuario.model';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogTransacaoComponent } from 'src/app/dialogs/dialog-transacao/dialog-transacao.component';
 
 @Component({
   selector: 'app-visao-geral',
@@ -13,7 +15,10 @@ export class VisaoGeralComponent implements OnInit {
 
   constructor(private visaoGeralService: VisaoGeralService,
               public appService: AppService,
-              private router: Router) {}
+              private router: Router,
+              private dialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
     this.visaoGeralService.getUsuarioLogado().subscribe({
@@ -31,6 +36,18 @@ export class VisaoGeralComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  openDialogTransacao(isReceita: boolean) {
+    this.dialog.open(DialogTransacaoComponent, {
+      height: '500px',
+      width: '500px',
+      data: {isReceita}
+    });
+  }
+
+  openDialogOrcamento() {
+
   }
   
 }

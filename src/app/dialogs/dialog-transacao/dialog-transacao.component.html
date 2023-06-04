@@ -1,0 +1,38 @@
+<div class="p-3">
+    <div class="d-flex justify-content-end">
+        <span class="fechar" (click)="fechar()">
+            <i class="bi bi-x"></i>
+        </span>
+    </div>
+    <h2 mat-dialog-title [ngClass]="{'receita': data.isReceita, 'despesa': !data.isReceita}">{{texto}}</h2>
+    <div mat-dialog-content>
+        <form [formGroup]="transacaoForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" placeholder="Descrição" formControlName="descricao">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="date" placeholder="Data" formControlName="data">
+                </div>
+                <div class="col-md-6">
+                    <input placeholder="Valor" formControlName="valor"
+                    currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <select matNativeControl formControlName="categoria">
+                        <option value=0 selected>Selecionar categoria</option>
+                        <option value=1>Testando</option>
+                        <!-- <option *ngFor="let car of cars" [value]="car.value">
+                            {{car.viewValue}}
+                        </option> -->
+                    </select>
+                </div>
+            </div>
+            <button class="check-btn"><i class="bi bi-check-circle-fill"></i></button>
+        </form>
+    </div>
+</div>

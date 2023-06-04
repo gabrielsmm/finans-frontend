@@ -28,12 +28,13 @@ form {
     flex-direction: column;
 }
 
-input {
+input, select {
     padding: 10px 8px;
     outline: none;
     margin-bottom: .7em;
     border: 1px solid #8dc8a9;
     background-color: #f5faf7;
+    width: 100%;
 }
 
 .btn,
@@ -72,4 +73,22 @@ input[type="submit"]:hover {
 
 .hide {
     display: none;
+}
+
+.orcamento {
+    color: #ff9800;
+}
+
+.receita {
+    color: #139153;
+}
+
+.despesa {
+    color: #c01f2c;
+}
+
+.check-btn {
+    font-size: 3.2em;
+    background-color: transparent;
+    margin: 20px auto 0 auto;
 }
