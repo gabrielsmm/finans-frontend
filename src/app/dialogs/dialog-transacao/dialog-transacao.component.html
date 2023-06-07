@@ -1,4 +1,4 @@
-<div>
+<div class="p-2">
     <div class="d-flex justify-content-end">
         <span class="fechar" (click)="fechar()">
             <i class="bi bi-x"></i>
@@ -9,26 +9,29 @@
         <form [formGroup]="transacaoForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="text" placeholder="Descrição" formControlName="descricao">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" placeholder="Descrição" formControlName="descricao" id="descricao">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <input type="date" placeholder="Data" formControlName="data">
+                    <label for="data">Data</label>
+                    <input type="date" placeholder="Data" formControlName="data" id="data">
                 </div>
                 <div class="col-md-6">
-                    <input placeholder="Valor" formControlName="valor"
+                    <label for="valor">Valor</label>
+                    <input placeholder="Valor" formControlName="valor" id="valor"
                     currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <select matNativeControl formControlName="categoria">
+                    <label for="categoria">Categoria</label>
+                    <select matNativeControl formControlName="categoria" id="categoria">
                         <option value=0 selected>Selecionar categoria</option>
-                        <option value=1>Testando</option>
-                        <!-- <option *ngFor="let car of cars" [value]="car.value">
-                            {{car.viewValue}}
-                        </option> -->
+                        <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                            {{categoria.nome}}
+                        </option>
                     </select>
                 </div>
             </div>
