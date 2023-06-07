@@ -46,9 +46,6 @@ export class DialogOrcamentoComponent {
         console.error(err);
         this.mensagemErro = this.appService.getMensagensErro(err);
         this.showErro = true;
-      },
-      complete: () => {
-
       }
     });
   }

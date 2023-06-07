@@ -55,10 +55,14 @@ export class VisaoGeralComponent implements OnInit {
   }
 
   public openDialogTransacao(isReceita: boolean) {
-    this.dialog.open(DialogTransacaoComponent, {
+    let dialogRef = this.dialog.open(DialogTransacaoComponent, {
       height: '500px',
       width: '500px',
       data: {isReceita}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getOrcamentoVigente();
     });
   }
 

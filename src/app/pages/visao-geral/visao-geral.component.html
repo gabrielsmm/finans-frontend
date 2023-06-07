@@ -14,7 +14,7 @@
                             <p>{{orcamento.valor | currency : 'BRL'}}</p>
                         </div>
                     </div>
-                    <p *ngIf="!possuiOrcamento()" class="pt-2">Nenhum orçamento vigente. Adicione agora mesmo!</p>
+                    <p *ngIf="!possuiOrcamento()" class="pt-2">Não encontramos nenhum orçamento vigente. Adicione agora mesmo!</p>
                     <div *ngIf="possuiOrcamento()" class="d-flex align-items-center justify-content-between">
                         <mat-card class="card-acoes">
                             <p>receitas</p>

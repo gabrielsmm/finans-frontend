@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label for="categoria">Categoria</label>
-                    <select matNativeControl formControlName="categoria" id="categoria">
+                    <select matNativeControl formControlName="categoriaId" id="categoria">
                         <option value=0 selected>Selecionar categoria</option>
                         <option *ngFor="let categoria of categorias" [value]="categoria.id">
                             {{categoria.nome}}
@@ -35,7 +35,15 @@
                     </select>
                 </div>
             </div>
-            <button class="check-btn"><i class="bi bi-check-circle-fill"></i></button>
+            <div *ngIf="showErro" class="alert alert-danger">
+                {{mensagemErro}}
+            </div>
+            <button class="check-btn"
+            [disabled]="!transacaoForm.valid"
+            matTooltip="Verifique se as informações foram corretamente preenchidas" 
+            [matTooltipDisabled]="transacaoForm.valid">
+                <i class="bi bi-check-circle-fill"></i>
+            </button>
         </form>
     </div>
 </div>

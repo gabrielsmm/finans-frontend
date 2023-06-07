@@ -4,6 +4,7 @@ import { DialogTransacaoComponent } from './dialog-transacao.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -15,7 +16,8 @@ import { NgxCurrencyModule } from 'ngx-currency';
     CommonModule,
     ReactiveFormsModule,
     MatDialogModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    MatTooltipModule
   ],
   exports: [
     DialogTransacaoComponent
