@@ -8,19 +8,21 @@
                 <div class="col-md-8">
                     <div class="d-flex align-items-start justify-content-between">
                         <p>Olá, <b>{{appService.usuarioLogado.nome}}</b></p>
-                        <div class="saldo">
+                        <p *ngIf="possuiOrcamento()">Vigência: {{orcamento.dataInicio | date: 'dd/MM/yyyy'}} - {{orcamento.dataFim | date: 'dd/MM/yyyy'}}</p>
+                        <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
-                            <p>R$ 200.00</p>
+                            <p>{{orcamento.valor | currency : 'BRL'}}</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between">
+                    <p *ngIf="!possuiOrcamento()" class="pt-2">Nenhum orçamento vigente. Adicione agora mesmo!</p>
+                    <div *ngIf="possuiOrcamento()" class="d-flex align-items-center justify-content-between">
                         <mat-card class="card-acoes">
-                            <p>receita mensal</p>
-                            <p class="receita">R$ 0,00</p>
+                            <p>receitas</p>
+                            <p class="receita">{{orcamento.valorReceitas ?? 0 | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card class="card-acoes">
-                            <p>despesa mensal</p>
-                            <p class="despesa">R$ 0,00</p>
+                            <p>despesas</p>
+                            <p class="despesa">{{orcamento.valorDespesas ?? 0 | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
                             <p>ver relatórios</p>
@@ -37,11 +39,11 @@
                             <i class="bi bi-currency-dollar orcamento"></i>
                             <p>ORÇAMENTO</p>
                         </div>     
-                        <div class="btn-acesso-rapido" (click)="openDialogTransacao(true)">
+                        <div *ngIf="possuiOrcamento()" class="btn-acesso-rapido" (click)="openDialogTransacao(true)">
                             <i class="bi bi-plus-circle receita"></i>
                             <p>RECEITA</p>
                         </div>
-                        <div class="btn-acesso-rapido" (click)="openDialogTransacao(false)">
+                        <div *ngIf="possuiOrcamento()"  class="btn-acesso-rapido" (click)="openDialogTransacao(false)">
                             <i class="bi bi-dash-circle despesa"></i>
                             <p>DESPESA</p>
                         </div>     

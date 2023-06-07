@@ -40,7 +40,7 @@ export class DialogOrcamentoComponent {
     this.orcamento.usuarioId = this.appService.usuarioLogado.id;
     this.orcamentoService.create(this.orcamento).subscribe({
       next: (data) => {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       },
       error: (err) => {
         console.error(err);
@@ -54,7 +54,7 @@ export class DialogOrcamentoComponent {
   }
 
   fechar() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
 }

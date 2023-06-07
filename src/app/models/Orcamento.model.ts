@@ -4,6 +4,8 @@ export class Orcamento {
     dataInicio: Date
     dataFim: Date
     valor: number
+    valorReceitas?: number
+    valorDespesas?: number
 
     usuarioId: number;
 

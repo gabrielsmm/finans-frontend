@@ -35,7 +35,15 @@ export class AppService {
   }
 
   getMensagensErro(erro: any): string {
-    return erro.error.errors.map((erro: any) => erro.message).join(', ');
+    if (erro.error.message) {
+      return erro.error.message
+    } else {
+      return erro.error.errors.map((erro: any) => erro.message).join(', ');
+    }
+  }
+
+  isNullOrUndefined(obj: any): boolean {
+    return obj === null || obj === undefined;
   }
   
 }

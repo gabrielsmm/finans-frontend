@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTransacaoComponent } from 'src/app/dialogs/dialog-transacao/dialog-transacao.component';
 import { DialogOrcamentoComponent } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.component';
+import { Orcamento } from 'src/app/models/Orcamento.model';
 
 @Component({
   selector: 'app-visao-geral',
@@ -13,6 +14,8 @@ import { DialogOrcamentoComponent } from 'src/app/dialogs/dialog-orcamento/dialo
   styleUrls: ['./visao-geral.component.css']
 })
 export class VisaoGeralComponent implements OnInit {
+
+  public orcamento: Orcamento = new Orcamento();
 
   constructor(private visaoGeralService: VisaoGeralService,
               public appService: AppService,
@@ -30,6 +33,7 @@ export class VisaoGeralComponent implements OnInit {
           this.router.navigate(['/login']);
         }
         this.appService.usuarioLogado = usuarioLogado;
+        this.getOrcamentoVigente();
       },
       error: (err) => {
         console.error(err);
@@ -39,7 +43,18 @@ export class VisaoGeralComponent implements OnInit {
     });
   }
 
-  openDialogTransacao(isReceita: boolean) {
+  private getOrcamentoVigente() {
+    this.visaoGeralService.getOrcamentoVigente().subscribe({
+      next: (data) => {
+        this.orcamento = data;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+  public openDialogTransacao(isReceita: boolean) {
     this.dialog.open(DialogTransacaoComponent, {
       height: '500px',
       width: '500px',
@@ -47,11 +62,19 @@ export class VisaoGeralComponent implements OnInit {
     });
   }
 
-  openDialogOrcamento() {
-    this.dialog.open(DialogOrcamentoComponent, {
+  public openDialogOrcamento() {
+    let dialogRef = this.dialog.open(DialogOrcamentoComponent, {
       height: '500px',
       width: '500px'
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getOrcamentoVigente();
+    });
+  }
+
+  public possuiOrcamento(): boolean {
+    return !this.appService.isNullOrUndefined(this.orcamento);
   }
   
 }
