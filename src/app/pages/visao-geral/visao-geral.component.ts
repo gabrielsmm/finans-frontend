@@ -16,6 +16,7 @@ import { Orcamento } from 'src/app/models/Orcamento.model';
 export class VisaoGeralComponent implements OnInit {
 
   public orcamento: Orcamento = new Orcamento();
+  public saldo: number = 0;
 
   constructor(private visaoGeralService: VisaoGeralService,
               public appService: AppService,
@@ -47,6 +48,7 @@ export class VisaoGeralComponent implements OnInit {
     this.visaoGeralService.getOrcamentoVigente().subscribe({
       next: (data) => {
         this.orcamento = data;
+        this.calcularSaldo();
       },
       error: (err) => {
         console.error(err);
@@ -79,6 +81,10 @@ export class VisaoGeralComponent implements OnInit {
 
   public possuiOrcamento(): boolean {
     return !this.appService.isNullOrUndefined(this.orcamento);
+  }
+
+  private calcularSaldo() {
+    this.saldo = this.orcamento.valor + this.orcamento.valorReceitas - this.orcamento.valorDespesas;
   }
   
 }

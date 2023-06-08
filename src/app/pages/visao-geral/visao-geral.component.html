@@ -11,18 +11,18 @@
                         <p *ngIf="possuiOrcamento()">Vigência: {{orcamento.dataInicio | date: 'dd/MM/yyyy'}} - {{orcamento.dataFim | date: 'dd/MM/yyyy'}}</p>
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
-                            <p>{{orcamento.valor | currency : 'BRL'}}</p>
+                            <p>{{saldo | currency : 'BRL'}}</p>
                         </div>
                     </div>
                     <p *ngIf="!possuiOrcamento()" class="pt-2">Não encontramos nenhum orçamento vigente. Adicione agora mesmo!</p>
                     <div *ngIf="possuiOrcamento()" class="d-flex align-items-center justify-content-between">
                         <mat-card class="card-acoes">
                             <p>receitas</p>
-                            <p class="receita">{{orcamento.valorReceitas ?? 0 | currency : 'BRL'}}</p>
+                            <p class="receita">{{orcamento.valorReceitas | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card class="card-acoes">
                             <p>despesas</p>
-                            <p class="despesa">{{orcamento.valorDespesas ?? 0 | currency : 'BRL'}}</p>
+                            <p class="despesa">{{orcamento.valorDespesas | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
                             <p>ver relatórios</p>
