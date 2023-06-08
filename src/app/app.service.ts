@@ -10,7 +10,9 @@ export class AppService {
   public usuarioAutenticado: boolean = false;
   public usuarioLogado: Usuario = new Usuario();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    
+  }
 
   deslogar() {
     this.usuarioAutenticado = false;
@@ -44,6 +46,15 @@ export class AppService {
 
   isNullOrUndefined(obj: any): boolean {
     return obj === null || obj === undefined;
+  }
+
+  printData(data: Date): string {
+    const partes = data.toString().split('-');
+    const dia = partes[2];
+    const mes = partes[1];
+    const ano = partes[0];
+
+    return `${dia}/${mes}/${ano}`;
   }
   
 }

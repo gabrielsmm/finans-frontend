@@ -11,12 +11,12 @@
 
 .card-titulo {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .btn-add-orcamento {
-    cursor: pointer;
     background-color: transparent;
+    margin-top: -10px;
 }
 
 .btn-add-orcamento i {

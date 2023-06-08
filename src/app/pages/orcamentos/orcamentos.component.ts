@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { AppService } from 'src/app/app.service';
+import { DialogConfirmacaoComponent } from 'src/app/dialogs/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogOrcamentoComponent } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.component';
 import { Orcamento } from 'src/app/models/Orcamento.model';
 import { OrcamentoService } from 'src/app/services/orcamento.service';
@@ -23,7 +25,8 @@ export class OrcamentosComponent implements OnInit {
   public totalElements = 0;
 
   constructor(private orcamentoService: OrcamentoService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private appService: AppService) {
 
   }
 
@@ -50,7 +53,24 @@ export class OrcamentosComponent implements OnInit {
   }
 
   public excluirClick(orcamento: Orcamento) {
-    // Criar dialog de confirmação
+    const dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      maxWidth: '500px',
+      data: {texto: `Confirma exclusão do orçamento referente ao período 
+             ${this.printData(orcamento.dataInicio)} - ${this.printData(orcamento.dataFim)}?`}
+    });
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.orcamentoService.delete(orcamento.id).subscribe({
+          next: (data) => {
+            this.getOrcamentos(this.page);
+          },
+          error: (err) => {
+            console.error(err);
+          }
+        });
+      }
+    });
   }
 
   public openDialogOrcamento() {
@@ -70,6 +90,10 @@ export class OrcamentosComponent implements OnInit {
 
   public calcularSaldo(orcamento: Orcamento): number {
     return orcamento.valor + orcamento.valorReceitas - orcamento.valorDespesas;
+  }
+
+  public printData(data: Date): string {
+    return this.appService.printData(data);
   }
 
 }

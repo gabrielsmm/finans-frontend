@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DialogConfirmacaoModule } from 'src/app/dialogs/dialog-confirmacao/dialog-confirmacao.module';
 
 
 
@@ -23,7 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatTableModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DialogConfirmacaoModule
   ]
 })
 export class OrcamentosModule { }
