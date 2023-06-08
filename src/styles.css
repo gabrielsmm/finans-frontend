@@ -56,7 +56,7 @@ input[type="submit"] {
     margin-bottom: 1em;
 }
 
-input:disabled, button:disabled {
+input:disabled, button.check-btn:disabled {
     cursor: not-allowed;
     background-color: #ce7981;
     color: #611e24;
@@ -91,4 +91,19 @@ input[type="submit"]:hover {
     font-size: 3.2em;
     background-color: transparent !important;
     margin: 0 auto;
+}
+
+.btn-action {
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.btn-vermelho {
+    background-color: #ce7981;
+    color: #580d13;
+}
+
+.btn-amarelo {
+    background-color: #ff9800;
+    color: #ff2600;
 }

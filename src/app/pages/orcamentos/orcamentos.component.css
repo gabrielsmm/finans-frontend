@@ -1,0 +1,32 @@
+.card-principal {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-titulo {
+    display: flex;
+    align-items: flex-end;
+}
+
+.btn-add-orcamento {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.btn-add-orcamento i {
+    font-size: 2em;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    background-color: whitesmoke;
+}
