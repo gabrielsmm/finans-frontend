@@ -84,7 +84,7 @@ export class VisaoGeralComponent implements OnInit {
   }
 
   private calcularSaldo() {
-    this.saldo = this.orcamento.valor + this.orcamento.valorReceitas - this.orcamento.valorDespesas;
+    if (this.orcamento) this.saldo = this.orcamento.valor + this.orcamento.valorReceitas - this.orcamento.valorDespesas;
   }
   
 }

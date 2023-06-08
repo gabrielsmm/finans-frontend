@@ -17,6 +17,9 @@ export class DialogOrcamentoComponent {
   public showErro: boolean = false;
   public mensagemErro: string = '';
 
+  public orcamentoId: number;
+  public isEditar: boolean = false;
+
   public orcamentoForm = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
     dataInicio: new FormControl(this.appService.getDataFormatada(this.appService.getInicioMes()), Validators.required),
@@ -32,13 +35,55 @@ export class DialogOrcamentoComponent {
   }
 
   ngOnInit(): void {
+    if (this.data) {
+      this.isEditar = true;
+      this.texto = 'Editar orçamento';
+      this.getOrcamento(this.data.id);
+    }
+  }
 
+  private getOrcamento(id: number) {
+    this.orcamentoService.findById(id).subscribe({
+      next: (data) => {
+        this.orcamento = data;
+        this.orcamentoId = this.orcamento.id;
+        this.orcamentoForm.get('nome')?.setValue(this.orcamento.nome);
+        this.orcamentoForm.get('dataInicio')?.setValue(this.orcamento.dataInicio.toString());
+        this.orcamentoForm.get('dataFim')?.setValue(this.orcamento.dataFim.toString());
+        this.orcamentoForm.get('valor')?.setValue(this.orcamento.valor);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   onSubmit() {
     this.orcamento = new Orcamento(this.orcamentoForm.value);
     this.orcamento.usuarioId = this.appService.usuarioLogado.id;
+    if (!this.isEditar) {
+      this.inserirOrcamento(this.orcamento);
+    } else {
+      this.atualizarOrcamento(this.orcamento);
+    }
+  }
+
+  private inserirOrcamento(orcamento: Orcamento) {
     this.orcamentoService.create(this.orcamento).subscribe({
+      next: (data) => {
+        this.dialogRef.close(true);
+      },
+      error: (err) => {
+        console.error(err);
+        this.mensagemErro = this.appService.getMensagensErro(err);
+        this.showErro = true;
+      }
+    });
+  }
+
+  private atualizarOrcamento(orcamento: Orcamento) {
+    orcamento.id = this.orcamentoId;
+    this.orcamentoService.update(orcamento).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
       },

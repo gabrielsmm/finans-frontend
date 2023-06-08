@@ -49,7 +49,15 @@ export class OrcamentosComponent implements OnInit {
   }
 
   public editarClick(orcamento: Orcamento) {
-    // abrir dialog de orçamento para edição
+    let dialogRef = this.dialog.open(DialogOrcamentoComponent, {
+      height: '500px',
+      width: '500px',
+      data: {id: orcamento.id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getOrcamentos();
+    });
   }
 
   public excluirClick(orcamento: Orcamento) {

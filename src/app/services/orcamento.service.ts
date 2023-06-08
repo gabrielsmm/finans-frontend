@@ -13,6 +13,11 @@ export class OrcamentoService {
 
   constructor(private http: HttpClient) { }
 
+  findById(id: any): Observable<Orcamento>{
+    const url = `${this.baseUrl}/orcamentos/${id}`;
+    return this.http.get<Orcamento>(url);
+  }
+
   findPage(page: number = 0, linesPerPage?: number, orderBy?: string, direction?: string): Observable<any>{
     let url = `${this.baseUrl}/orcamentos/page?page=${page}`;
     if (linesPerPage) url += `&linesPerPage=${linesPerPage}`;
