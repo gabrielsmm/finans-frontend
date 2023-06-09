@@ -19,7 +19,7 @@ export class OrcamentosComponent implements OnInit {
 
   // paginação
   public page = 0;
-  public size = 5;
+  public size = 10;
   public first: boolean;
   public last: boolean;
   public totalElements = 0;
@@ -35,7 +35,7 @@ export class OrcamentosComponent implements OnInit {
   }
 
   private getOrcamentos(page?: number) {
-    this.orcamentoService.findPage(page).subscribe({
+    this.orcamentoService.findPage(page, this.size).subscribe({
       next: (data) => {
         this.orcamentos = data.content;
         this.first = data.first;
@@ -94,7 +94,8 @@ export class OrcamentosComponent implements OnInit {
   }
 
   public atualizarPagina(e: PageEvent) {
-    console.log(e);
+    this.page = e.pageIndex;
+    this.getOrcamentos(this.page);
   }
 
   public calcularSaldo(orcamento: Orcamento): number {

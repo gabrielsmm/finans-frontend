@@ -1,6 +1,6 @@
 .container-fluid {
     background-color: transparent;
-    position: absolute;
+    position: static;
     bottom: 0;
 }
 

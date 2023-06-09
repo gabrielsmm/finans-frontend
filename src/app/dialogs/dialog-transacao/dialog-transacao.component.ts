@@ -20,6 +20,9 @@ export class DialogTransacaoComponent implements OnInit {
   public showErro: boolean = false;
   public mensagemErro: string = '';
 
+  public transacaoId: number;
+  public isEditar: boolean = false;
+
   public transacaoForm = new FormGroup({
     descricao: new FormControl('', [Validators.required, Validators.minLength(3)]),
     data: new FormControl(this.appService.getDataFormatada(new Date()), Validators.required),
@@ -36,8 +39,31 @@ export class DialogTransacaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.data.isReceita) this.texto = 'Nova despesa';
-    this.getCategorias(this.data.isReceita ? 1 : 2);
+    if (this.data.id) {
+      this.isEditar = true;
+      this.texto = (!this.data.isReceita) ? 'Editar despesa' : 'Editar receita';
+      this.getTransacao(this.data.id);
+    } else {
+      if (!this.data.isReceita) this.texto = 'Nova despesa';
+      this.getCategorias(this.data.isReceita ? 1 : 2);
+    }
+  }
+
+  private getTransacao(id: number) {
+    this.transacaoService.findById(id).subscribe({
+      next: (data) => {
+        this.transacao = data;
+        this.transacaoId = this.transacao.id;
+        this.transacaoForm.get('descricao')?.setValue(this.transacao.descricao);
+        this.transacaoForm.get('data')?.setValue(this.transacao.data.toString());
+        this.transacaoForm.get('valor')?.setValue(this.transacao.valor);
+        this.transacaoForm.get('categoriaId')?.setValue(this.transacao.categoria.id);
+        this.getCategorias(this.data.isReceita ? 1 : 2);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   getCategorias(tipo: number) {
@@ -55,10 +81,33 @@ export class DialogTransacaoComponent implements OnInit {
     this.transacao = new Transacao(this.transacaoForm.value);
     this.transacao.usuarioId = this.appService.usuarioLogado.id;
     this.transacao.categoriaId = Number(this.transacao.categoriaId);
-    this.transacaoService.create(this.transacao).subscribe({
+    if (!this.isEditar) {
+      this.inserirTransacao(this.transacao);
+    } else {
+      this.atualizarTransacao(this.transacao);
+    }
+  }
+
+  private inserirTransacao(transacao: Transacao) {
+    this.transacaoService.create(transacao).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
         this.appService.mensagemSucesso("Transação inserida");
+      },
+      error: (err) => {
+        console.error(err);
+        this.mensagemErro = this.appService.getMensagensErro(err);
+        this.showErro = true;
+      }
+    });
+  }
+
+  private atualizarTransacao(transacao: Transacao) {
+    transacao.id = this.transacaoId;
+    this.transacaoService.update(transacao).subscribe({
+      next: (data) => {
+        this.dialogRef.close(true);
+        this.appService.mensagemSucesso("Transação atualizada");
       },
       error: (err) => {
         console.error(err);
