@@ -58,6 +58,7 @@ export class DialogTransacaoComponent implements OnInit {
     this.transacaoService.create(this.transacao).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
+        this.appService.mensagemSucesso("Transação inserida");
       },
       error: (err) => {
         console.error(err);

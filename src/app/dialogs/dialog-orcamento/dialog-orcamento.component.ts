@@ -72,6 +72,7 @@ export class DialogOrcamentoComponent {
     this.orcamentoService.create(this.orcamento).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
+        this.appService.mensagemSucesso("Orçamento incluído");
       },
       error: (err) => {
         console.error(err);
@@ -86,6 +87,7 @@ export class DialogOrcamentoComponent {
     this.orcamentoService.update(orcamento).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
+        this.appService.mensagemSucesso("Orçamento atualizado");
       },
       error: (err) => {
         console.error(err);

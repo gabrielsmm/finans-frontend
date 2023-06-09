@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from './models/Usuario.model';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AppService {
   public usuarioAutenticado: boolean = false;
   public usuarioLogado: Usuario = new Usuario();
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private _snack: MatSnackBar) {
     
   }
 
@@ -19,6 +21,40 @@ export class AppService {
     this.usuarioLogado = new Usuario();
     localStorage.removeItem("token");
     this.router.navigate(['/login']);
+  }
+
+  mensagem(str: string){
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      duration: 3000
+    });
+  }
+
+  mensagemTime(str: string, duration: number){
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      duration: duration
+    });
+  }
+
+  mensagemErro(str: string){
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['snack-background-red'];
+    config.duration = 3000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'bottom';
+    this._snack.open(`${str}`, '', config);
+  }
+
+  mensagemSucesso(str: string){
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['snack-background-green'];
+    config.duration = 3000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'bottom';
+    this._snack.open(`${str}`, '', config);
   }
 
   getDataFormatada(data: Date): string {

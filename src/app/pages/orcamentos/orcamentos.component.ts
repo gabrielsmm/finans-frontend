@@ -75,6 +75,7 @@ export class OrcamentosComponent implements OnInit {
           },
           error: (err) => {
             console.error(err);
+            this.appService.mensagemErro(this.appService.getMensagensErro(err));
           }
         });
       }
