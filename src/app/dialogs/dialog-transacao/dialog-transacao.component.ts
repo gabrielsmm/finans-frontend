@@ -21,6 +21,7 @@ export class DialogTransacaoComponent implements OnInit {
   public mensagemErro: string = '';
 
   public transacaoId: number;
+  public orcamentoId: number;
   public isEditar: boolean = false;
 
   public transacaoForm = new FormGroup({
@@ -54,6 +55,7 @@ export class DialogTransacaoComponent implements OnInit {
       next: (data) => {
         this.transacao = data;
         this.transacaoId = this.transacao.id;
+        this.orcamentoId = this.transacao.orcamentoId;
         this.transacaoForm.get('descricao')?.setValue(this.transacao.descricao);
         this.transacaoForm.get('data')?.setValue(this.transacao.data.toString());
         this.transacaoForm.get('valor')?.setValue(this.transacao.valor);
@@ -89,6 +91,7 @@ export class DialogTransacaoComponent implements OnInit {
   }
 
   private inserirTransacao(transacao: Transacao) {
+    transacao.orcamentoId = this.appService.orcamentoVigente.id;
     this.transacaoService.create(transacao).subscribe({
       next: (data) => {
         this.dialogRef.close(true);
@@ -104,6 +107,7 @@ export class DialogTransacaoComponent implements OnInit {
 
   private atualizarTransacao(transacao: Transacao) {
     transacao.id = this.transacaoId;
+    transacao.orcamentoId = this.orcamentoId;
     this.transacaoService.update(transacao).subscribe({
       next: (data) => {
         this.dialogRef.close(true);

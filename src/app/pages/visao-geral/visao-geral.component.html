@@ -8,7 +8,7 @@
                 <div class="col-md-8">
                     <div class="d-flex align-items-start justify-content-between">
                         <p>Olá, <b>{{appService.usuarioLogado.nome}}</b></p>
-                        <p *ngIf="possuiOrcamento()">Vigência: {{orcamento.dataInicio | date: 'dd/MM/yyyy'}} - {{orcamento.dataFim | date: 'dd/MM/yyyy'}}</p>
+                        <p *ngIf="possuiOrcamento()">Vigência: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p>
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
                             <p>{{saldo | currency : 'BRL'}}</p>
@@ -18,11 +18,11 @@
                     <div *ngIf="possuiOrcamento()" class="d-flex align-items-center justify-content-between">
                         <mat-card class="card-acoes">
                             <p>receitas</p>
-                            <p class="receita">{{orcamento.valorReceitas | currency : 'BRL'}}</p>
+                            <p class="receita">{{appService.orcamentoVigente.valorReceitas | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card class="card-acoes">
                             <p>despesas</p>
-                            <p class="despesa">{{orcamento.valorDespesas | currency : 'BRL'}}</p>
+                            <p class="despesa">{{appService.orcamentoVigente.valorDespesas | currency : 'BRL'}}</p>
                         </mat-card>
                         <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
                             <p>ver relatórios</p>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from './models/Usuario.model';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Orcamento } from './models/Orcamento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AppService {
 
   public usuarioAutenticado: boolean = false;
   public usuarioLogado: Usuario = new Usuario();
+  public orcamentoVigente: Orcamento = new Orcamento();
 
   constructor(private router: Router,
               private _snack: MatSnackBar) {

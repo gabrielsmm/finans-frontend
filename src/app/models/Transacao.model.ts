@@ -9,6 +9,7 @@ export class Transacao {
 
     usuarioId: number;
     categoriaId: number;
+    orcamentoId: number;
 
     public constructor(init?: Partial<any>) {
         Object.assign(this, init);
