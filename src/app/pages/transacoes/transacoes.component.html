@@ -14,15 +14,21 @@
                 </mat-menu>
             </div>
         </div>
-        <mat-paginator
-            (page)="atualizarPagina($event)"
-            [length]="totalElements"
-            [pageSize]="size"
-            [showFirstLastButtons]="true"
-            [hidePageSize]="true"
-            [pageIndex]="page"
-            aria-label="Selecionar página">
-        </mat-paginator>
+        <div class="d-flex align-items-center justify-content-between">
+            <mat-chip-listbox aria-label="Seleção de tipo">
+                <mat-chip-option class="receita" (selectionChange)="filtrarPorTipo($event.selected ? 1 : -1)">Receita</mat-chip-option>
+                <mat-chip-option class="despesa" (selectionChange)="filtrarPorTipo($event.selected ? 2 : -1)">Despesa</mat-chip-option>
+            </mat-chip-listbox>
+            <mat-paginator
+                (page)="atualizarPagina($event)"
+                [length]="totalElements"
+                [pageSize]="size"
+                [showFirstLastButtons]="true"
+                [hidePageSize]="true"
+                [pageIndex]="page"
+                aria-label="Selecionar página">
+            </mat-paginator>
+        </div>
         <table mat-table [dataSource]="transacoes" class="mat-elevation-z8">
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>

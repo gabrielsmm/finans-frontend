@@ -30,3 +30,11 @@ table {
 .mat-mdc-row:hover .mat-mdc-cell {
     background-color: whitesmoke;
 }
+
+.mat-mdc-chip-selected.receita {
+    background-color: #139153;
+}
+
+.mat-mdc-chip-selected.despesa {
+    background-color: #c01f2c;
+}

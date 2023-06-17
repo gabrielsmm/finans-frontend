@@ -5,7 +5,7 @@ import { AppService } from 'src/app/app.service';
 import { DialogConfirmacaoComponent } from 'src/app/dialogs/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogTransacaoComponent } from 'src/app/dialogs/dialog-transacao/dialog-transacao.component';
 import { Transacao } from 'src/app/models/Transacao.model';
-import { TransacaoService } from 'src/app/services/transacao.service';
+import { TransacaoService, Filtro } from 'src/app/services/transacao.service';
 
 @Component({
   selector: 'app-transacoes',
@@ -26,16 +26,18 @@ export class TransacoesComponent implements OnInit {
 
   constructor(private transacaoService: TransacaoService,
               private appService: AppService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+    this.transacaoService.filtro = new Filtro();
+  }
 
   ngOnInit(): void {
     this.appService.validarLogin().subscribe((loginValido) => {
-      if (loginValido) this.getTransacoes();
+      if (loginValido) this.getTransacoes(this.transacaoService.filtro);
     });
   }
   
-  private getTransacoes(page?: number) {
-    this.transacaoService.findPage(page, this.size).subscribe({
+  private getTransacoes(filtro: Filtro) {
+    this.transacaoService.findPage(filtro).subscribe({
       next: (data) => {
         this.transacoes = data.content;
         this.first = data.first;
@@ -56,7 +58,7 @@ export class TransacoesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.getTransacoes();
+      if (result) this.getTransacoes(this.transacaoService.filtro);
     });
   }
 
@@ -71,7 +73,7 @@ export class TransacoesComponent implements OnInit {
       if (value) {
         this.transacaoService.delete(transacao.id).subscribe({
           next: (data) => {
-            this.getTransacoes(this.page);
+            this.getTransacoes(this.transacaoService.filtro);
           },
           error: (err) => {
             console.error(err);
@@ -90,13 +92,23 @@ export class TransacoesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.getTransacoes();
+      if (result) this.getTransacoes(this.transacaoService.filtro);
     });
+  }
+
+  filtrarPorTipo(tipo: number) {
+    if (tipo > 0) {
+      this.transacaoService.filtro.tipo = tipo;
+    } else {
+      this.transacaoService.filtro.tipo = -1;
+    }
+    this.getTransacoes(this.transacaoService.filtro);
   }
 
   public atualizarPagina(e: PageEvent) {
     this.page = e.pageIndex;
-    this.getTransacoes(this.page);
+    this.transacaoService.filtro.page = this.page;
+    this.getTransacoes(this.transacaoService.filtro);
   }
 
   public printData(data: Date): string {
