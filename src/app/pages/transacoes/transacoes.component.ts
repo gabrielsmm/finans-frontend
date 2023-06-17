@@ -29,7 +29,9 @@ export class TransacoesComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getTransacoes();
+    this.appService.validarLogin().subscribe((loginValido) => {
+      if (loginValido) this.getTransacoes();
+    });
   }
   
   private getTransacoes(page?: number) {

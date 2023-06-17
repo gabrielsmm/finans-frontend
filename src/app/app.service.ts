@@ -3,19 +3,49 @@ import { Usuario } from './models/Usuario.model';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Orcamento } from './models/Orcamento.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
+  private baseUrl: string = environment.baseUrl;
+
   public usuarioAutenticado: boolean = false;
   public usuarioLogado: Usuario = new Usuario();
   public orcamentoVigente: Orcamento = new Orcamento();
 
   constructor(private router: Router,
-              private _snack: MatSnackBar) {
+              private _snack: MatSnackBar,
+              private http: HttpClient) {
     
+  }
+
+  validarLogin(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.getUsuarioLogado().subscribe({
+        next: (data) => {
+          const usuarioLogado: Usuario = data;
+          if (!usuarioLogado) {
+            this.deslogar();
+            observer.next(false);
+          } else {
+            this.usuarioLogado = usuarioLogado;
+            observer.next(true);
+          }
+          observer.complete();
+        },
+        error: (err) => {
+          console.error(err);
+          this.deslogar();
+          observer.next(false);
+          observer.complete();
+        }
+      });
+    });
   }
 
   deslogar() {
@@ -93,6 +123,11 @@ export class AppService {
     const ano = partes[0];
 
     return `${dia}/${mes}/${ano}`;
+  }
+
+  getUsuarioLogado(): Observable<Usuario>{
+    const url = `${this.baseUrl}/usuarios/usuario-logado`;
+    return this.http.get<Usuario>(url);
   }
   
 }

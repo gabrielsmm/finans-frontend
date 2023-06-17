@@ -31,7 +31,9 @@ export class OrcamentosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getOrcamentos();
+    this.appService.validarLogin().subscribe((loginValido) => {
+      if (loginValido) this.getOrcamentos();
+    });
   }
 
   private getOrcamentos(page?: number) {
