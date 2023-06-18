@@ -15,7 +15,7 @@ export class FiltroMesAnoComponent implements OnInit {
 
   @Output() public mesAnoChange = new EventEmitter<void>();
 
-  public strMes: string;
+  public strMesAno: string;
   public dataAtual: Date;
 
   private nomesMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 
@@ -27,15 +27,15 @@ export class FiltroMesAnoComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataAtual = new Date();
-    this.strMes = `${this.getNomeMes(this.mes)} ${this.ano}`;
+    this.strMesAno = `${this.getNomeMes(this.mes)} ${this.ano}`;
   }
 
-  mesAnterior() {
+  mesAnoAnterior() {
     this.dataAtual.setMonth(this.dataAtual.getMonth() - 1);
     this.atualizarMesSelecionado();
   }
 
-  proximoMes() {
+  mesAnoProximo() {
     this.dataAtual.setMonth(this.dataAtual.getMonth() + 1);
     this.atualizarMesSelecionado();
   }
@@ -47,7 +47,7 @@ export class FiltroMesAnoComponent implements OnInit {
     this.mesChange.emit(this.mes);
     this.anoChange.emit(this.ano);
 
-    this.strMes = `${this.getNomeMes(this.mes)} ${this.ano}`;
+    this.strMesAno = `${this.getNomeMes(this.mes)} ${this.ano}`;
 
     this.mesAnoChange.emit();
   }

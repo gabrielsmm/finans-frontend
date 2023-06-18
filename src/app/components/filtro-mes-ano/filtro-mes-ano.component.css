@@ -1,14 +1,14 @@
-.filtro-mes {
+.filtro-mes-ano {
     display: flex;
     align-items: center;
     font-size: 1.2em;
 }
 
-.filtro-mes button {
+.filtro-mes-ano button {
     background: none;
     color: #696969;
 }
 
-.mes-atual {
+.mes-ano-atual {
     margin: 0 10px;
 }

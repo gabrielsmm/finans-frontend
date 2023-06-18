@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <p *ngIf="!possuiOrcamento()" class="pt-2">Não encontramos nenhum orçamento vigente. Adicione agora mesmo!</p>
-                    <div *ngIf="possuiOrcamento()" class="d-flex align-items-center justify-content-between">
+                    <div *ngIf="possuiOrcamento()" class="d-flex align-items-center">
                         <mat-card class="card-acoes">
                             <p>receitas</p>
                             <p class="receita">{{appService.orcamentoVigente.valorReceitas | currency : 'BRL'}}</p>
@@ -24,10 +24,10 @@
                             <p>despesas</p>
                             <p class="despesa">{{appService.orcamentoVigente.valorDespesas | currency : 'BRL'}}</p>
                         </mat-card>
-                        <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
+                        <!-- <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
                             <p>ver relatórios</p>
                             <span><i class="bi bi-graph-up-arrow"></i></span>
-                        </mat-card>
+                        </mat-card> -->
                     </div>
                 </div>
                 <div class="col-md-4">
