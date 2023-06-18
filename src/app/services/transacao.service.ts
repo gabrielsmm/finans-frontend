@@ -10,6 +10,8 @@ export class Filtro {
   orderBy: string;
   direction: string;
   tipo: number;
+  mes: number;
+  ano: number;
 
   constructor(page: number = 0, linesPerPage: number = 10) {
     this.page = page;

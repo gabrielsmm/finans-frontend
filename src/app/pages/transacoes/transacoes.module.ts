@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
+import { FiltroMesAnoModule } from 'src/app/components/filtro-mes-ano/filtro-mes-ano.module';
 
 
 
@@ -27,7 +28,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTooltipModule,
     MatMenuModule,
     MatPaginatorModule,
-    MatChipsModule
+    MatChipsModule,
+    FiltroMesAnoModule
   ]
 })
 export class TransacoesModule { }

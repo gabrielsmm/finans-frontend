@@ -24,10 +24,12 @@ export class TransacoesComponent implements OnInit {
   public last: boolean;
   public totalElements = 0;
 
-  constructor(private transacaoService: TransacaoService,
+  constructor(public transacaoService: TransacaoService,
               private appService: AppService,
               private dialog: MatDialog) {
     this.transacaoService.filtro = new Filtro();
+    this.transacaoService.filtro.mes = new Date().getMonth() + 1;
+    this.transacaoService.filtro.ano = new Date().getFullYear();
   }
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class TransacoesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.getTransacoes(this.transacaoService.filtro);
+      if (result) this.refresh();
     });
   }
 
@@ -73,7 +75,7 @@ export class TransacoesComponent implements OnInit {
       if (value) {
         this.transacaoService.delete(transacao.id).subscribe({
           next: (data) => {
-            this.getTransacoes(this.transacaoService.filtro);
+            this.refresh();
           },
           error: (err) => {
             console.error(err);
@@ -92,23 +94,27 @@ export class TransacoesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.getTransacoes(this.transacaoService.filtro);
+      if (result) this.refresh();
     });
   }
 
-  filtrarPorTipo(tipo: number) {
+  public filtrarPorTipo(tipo: number) {
     if (tipo > 0) {
       this.transacaoService.filtro.tipo = tipo;
     } else {
       this.transacaoService.filtro.tipo = -1;
     }
+    this.refresh();
+  }
+
+  public refresh() {
     this.getTransacoes(this.transacaoService.filtro);
   }
 
   public atualizarPagina(e: PageEvent) {
     this.page = e.pageIndex;
     this.transacaoService.filtro.page = this.page;
-    this.getTransacoes(this.transacaoService.filtro);
+    this.refresh();
   }
 
   public printData(data: Date): string {

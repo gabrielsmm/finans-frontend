@@ -19,6 +19,10 @@
                 <mat-chip-option class="receita" (selectionChange)="filtrarPorTipo($event.selected ? 1 : -1)">Receita</mat-chip-option>
                 <mat-chip-option class="despesa" (selectionChange)="filtrarPorTipo($event.selected ? 2 : -1)">Despesa</mat-chip-option>
             </mat-chip-listbox>
+            <app-filtro-mes-ano 
+            [(mes)]="transacaoService.filtro.mes"
+            [(ano)]="transacaoService.filtro.ano"
+            (mesAnoChange)="refresh()"></app-filtro-mes-ano>
             <mat-paginator
                 (page)="atualizarPagina($event)"
                 [length]="totalElements"

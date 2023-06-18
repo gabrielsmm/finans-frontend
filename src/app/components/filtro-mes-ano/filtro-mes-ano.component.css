@@ -1,0 +1,14 @@
+.filtro-mes {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.filtro-mes button {
+    background: none;
+    color: #696969;
+}
+
+.mes-atual {
+    margin: 0 10px;
+}
