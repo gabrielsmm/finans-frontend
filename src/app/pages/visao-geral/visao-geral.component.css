@@ -1,7 +1,3 @@
-.container {
-    min-height: 80vh;
-}
-
 .card-principal {
     margin-top: 20px;
 }
@@ -33,4 +29,8 @@
 .btn-acesso-rapido i {
     font-size: 2.7em;
     margin-bottom: 5px;
+}
+
+.borda {
+    border-left: 1px solid #ccc;
 }

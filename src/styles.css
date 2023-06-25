@@ -96,16 +96,16 @@ input[type="submit"]:hover {
 .btn-action {
     margin-right: 5px;
     padding: 5px;
+    font-size: 1.3em;
+    background-color: transparent;
 }
 
 .btn-vermelho {
-    background-color: #ce7981;
-    color: #580d13;
+    color: #f30d0d;
 }
 
 .btn-amarelo {
-    background-color: #ff9800;
-    color: #ff2600;
+    color: #ffcc00;
 }
 
 .snack-background-red {

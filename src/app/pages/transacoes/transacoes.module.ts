@@ -8,9 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { FiltroMesAnoModule } from 'src/app/components/filtro-mes-ano/filtro-mes-ano.module';
+import { PaginatorPersonalizado } from 'src/app/components/paginator-personalizado/paginator-personalizado';
 
 
 
@@ -30,6 +31,7 @@ import { FiltroMesAnoModule } from 'src/app/components/filtro-mes-ano/filtro-mes
     MatPaginatorModule,
     MatChipsModule,
     FiltroMesAnoModule
-  ]
+  ],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorPersonalizado}]
 })
 export class TransacoesModule { }

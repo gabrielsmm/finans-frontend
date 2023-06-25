@@ -7,8 +7,9 @@ import { FooterModule } from 'src/app/components/footer/footer.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { DialogConfirmacaoModule } from 'src/app/dialogs/dialog-confirmacao/dialog-confirmacao.module';
+import { PaginatorPersonalizado } from 'src/app/components/paginator-personalizado/paginator-personalizado';
 
 
 
@@ -26,6 +27,7 @@ import { DialogConfirmacaoModule } from 'src/app/dialogs/dialog-confirmacao/dial
     MatTooltipModule,
     MatPaginatorModule,
     DialogConfirmacaoModule
-  ]
+  ],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorPersonalizado}]
 })
 export class OrcamentosModule { }
