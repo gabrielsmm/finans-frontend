@@ -5,7 +5,7 @@
         <div class="card-header">
             <div class="card-titulo">
                 <h2>Transações</h2>
-                <button class="btn-add-transacao" [matMenuTriggerFor]="menu" matTooltip="Adicionar nova transação">
+                <button *ngIf="possuiOrcamento()" class="btn-add-transacao" [matMenuTriggerFor]="menu" matTooltip="Adicionar nova transação">
                     <i class="bi bi-plus-circle-fill receita"></i>
                 </button>
                 <mat-menu #menu="matMenu">
@@ -74,6 +74,10 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <div class="sem-registros" *ngIf="!possuiRegistros()">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <p>Nenhuma movimentação no período</p>
+        </div>
     </mat-card>
 </div>
 

@@ -13,6 +13,11 @@ export class OrcamentoService {
 
   constructor(private http: HttpClient) { }
 
+  getOrcamentoVigente(): Observable<Orcamento> {
+    const url = `${this.baseUrl}/orcamentos/orcamento-vigente`;
+    return this.http.get<Orcamento>(url);
+  } 
+
   findById(id: any): Observable<Orcamento>{
     const url = `${this.baseUrl}/orcamentos/${id}`;
     return this.http.get<Orcamento>(url);

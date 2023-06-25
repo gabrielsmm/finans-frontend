@@ -108,4 +108,8 @@ export class OrcamentosComponent implements OnInit {
     return this.appService.printData(data);
   }
 
+  public possuiRegistros(): boolean {
+    return this.orcamentos.length > 0;
+  }
+
 }

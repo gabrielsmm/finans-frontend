@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { VisaoGeralService } from './visao-geral.service';
 import { AppService } from 'src/app/app.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTransacaoComponent } from 'src/app/dialogs/dialog-transacao/dialog-transacao.component';
@@ -15,8 +14,7 @@ export class VisaoGeralComponent implements OnInit {
 
   public saldo: number = 0;
 
-  constructor(private visaoGeralService: VisaoGeralService,
-              public appService: AppService,
+  constructor(public appService: AppService,
               private dialog: MatDialog) {
 
   }
@@ -28,14 +26,8 @@ export class VisaoGeralComponent implements OnInit {
   }
 
   private getOrcamentoVigente() {
-    this.visaoGeralService.getOrcamentoVigente().subscribe({
-      next: (data) => {
-        this.appService.orcamentoVigente = data;
-        this.calcularSaldo(this.appService.orcamentoVigente);
-      },
-      error: (err) => {
-        console.error(err);
-      }
+    this.appService.getOrcamentoVigente().subscribe((buscouOrcamento) => {
+      if (buscouOrcamento) this.calcularSaldo(this.appService.orcamentoVigente);
     });
   }
 
@@ -63,7 +55,7 @@ export class VisaoGeralComponent implements OnInit {
   }
 
   public possuiOrcamento(): boolean {
-    return !this.appService.isNullOrUndefined(this.appService.orcamentoVigente);
+    return this.appService.possuiOrcamento();
   }
 
   private calcularSaldo(orcamento: Orcamento) {

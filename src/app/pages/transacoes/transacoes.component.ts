@@ -34,7 +34,10 @@ export class TransacoesComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.validarLogin().subscribe((loginValido) => {
-      if (loginValido) this.getTransacoes(this.transacaoService.filtro);
+      if (loginValido) {
+        this.appService.getOrcamentoVigente().subscribe();
+        this.getTransacoes(this.transacaoService.filtro);
+      }
     });
   }
   
@@ -127,6 +130,14 @@ export class TransacoesComponent implements OnInit {
 
   public isReceita(transacao: Transacao): boolean {
     return transacao.categoria.tipo === 1;
+  }
+
+  public possuiOrcamento(): boolean {
+    return this.appService.possuiOrcamento();
+  }
+
+  public possuiRegistros(): boolean {
+    return this.transacoes.length > 0;
   }
 
 }

@@ -6,6 +6,7 @@ import { Orcamento } from './models/Orcamento.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { OrcamentoService } from './services/orcamento.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AppService {
 
   constructor(private router: Router,
               private _snack: MatSnackBar,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private orcamentoService: OrcamentoService) {
     
   }
 
@@ -53,6 +55,28 @@ export class AppService {
     this.usuarioLogado = new Usuario();
     localStorage.removeItem("token");
     this.router.navigate(['/login']);
+  }
+
+  getOrcamentoVigente(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.orcamentoService.getOrcamentoVigente().subscribe({
+        next: (data) => {
+          this.orcamentoVigente = data;
+          observer.next(true);
+        },
+        error: (err) => {
+          console.error(err);
+          observer.next(false);
+        },
+        complete : () => {
+          observer.complete();
+        }
+      });
+    });
+  }
+
+  possuiOrcamento(): boolean {
+    return !this.isNullOrUndefined(this.orcamentoVigente);
   }
 
   mensagem(str: string){

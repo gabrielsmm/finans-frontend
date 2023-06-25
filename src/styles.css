@@ -108,6 +108,17 @@ input[type="submit"]:hover {
     color: #ffcc00;
 }
 
+.sem-registros {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7em;
+    margin-top: 15px;
+    text-align: center;
+    color: #a0a0a0;
+}
+
 .snack-background-red {
     --mdc-snackbar-container-color: rgb(153, 50, 50);
     --mat-mdc-snack-bar-button-color: #ffffff;
