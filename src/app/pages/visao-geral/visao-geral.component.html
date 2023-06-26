@@ -6,9 +6,9 @@
         <mat-card-content>
             <div class="row">
                 <div class="col-md-8">
-                    <div class="d-flex align-items-start justify-content-between">
+                    <div class="conteudo-principal d-flex align-items-start justify-content-between">
                         <p>Olá, <b>{{appService.usuarioLogado.nome}}</b></p>
-                        <p *ngIf="possuiOrcamento()">Vigência: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p>
+                        <!-- <p *ngIf="possuiOrcamento()">Vigência: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p> -->
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
                             <p>{{saldo | currency : 'BRL'}}</p>
@@ -34,7 +34,7 @@
                     <div>
                         <p>Acesso rápido</p>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="acesso-rapido">
                         <div class="btn-acesso-rapido" (click)="openDialogOrcamento()">
                             <i class="bi bi-currency-dollar orcamento"></i>
                             <p>ORÇAMENTO</p>

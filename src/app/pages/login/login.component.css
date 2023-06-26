@@ -3,7 +3,8 @@
 }
 
 .card {
-    width: 35vw;
+    width: 40%;
+    max-width: 600px;
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0px 0px 8px 1px #CCC;
@@ -15,4 +16,32 @@
 
 .logo {
     margin: 0 auto;
+}
+
+/* Ajustes */
+@media (max-width: 320.98px) {
+    .card {
+        width: 85%;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (min-width: 321px) and (max-width: 575.98px) {
+    .card {
+        width: 80%;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .card {
+        width: 60%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card {
+        width: 50%;
+    }
 }
