@@ -46,29 +46,44 @@
 
             <ng-container matColumnDef="descricao">
                 <th mat-header-cell *matHeaderCellDef>Descrição</th>
-                <td mat-cell *matCellDef="let transacao">{{transacao.descricao}}</td>
+                <td mat-cell *matCellDef="let transacao">
+                    <span class="texto-mobile">Descrição:</span>
+                    {{transacao.descricao}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="data">
                 <th mat-header-cell *matHeaderCellDef>Data</th>
-                <td mat-cell *matCellDef="let transacao">{{transacao.data | date : 'dd/MM/yyyy'}}</td>
+                <td mat-cell *matCellDef="let transacao">
+                    <span class="texto-mobile">Data:</span>
+                    {{transacao.data | date : 'dd/MM/yyyy'}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="categoria">
                 <th mat-header-cell *matHeaderCellDef>Categoria</th>
-                <td mat-cell *matCellDef="let transacao">{{transacao.categoria.nome}}</td>
+                <td mat-cell *matCellDef="let transacao">
+                    <span class="texto-mobile">Categoria:</span>
+                    {{transacao.categoria.nome}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="tipo">
                 <th mat-header-cell *matHeaderCellDef>Tipo</th>
-                <td mat-cell *matCellDef="let transacao">{{getNomeTipo(transacao)}}</td>
+                <td mat-cell *matCellDef="let transacao">
+                    <span class="texto-mobile">Tipo:</span>
+                    {{getNomeTipo(transacao)}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="valor">
                 <th mat-header-cell *matHeaderCellDef>Valor</th>
                 <td mat-cell *matCellDef="let transacao" 
                 [ngClass]="{'receita': isReceita(transacao), 'despesa': !isReceita(transacao)}"
-                >{{transacao.valor | currency : 'BRL'}}</td>
+                >
+                <span class="texto-mobile">Valor:</span>
+                {{transacao.valor | currency : 'BRL'}}
+            </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

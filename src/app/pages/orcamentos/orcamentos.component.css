@@ -23,10 +23,41 @@
     font-size: 2em;
 }
 
-table {
+.mat-mdc-table {
     width: 100%;
+    table-layout: fixed;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
     background-color: whitesmoke;
+}
+
+.texto-mobile {
+    display: none;
+}
+
+@media(max-width: 992px) {
+    .texto-mobile {
+        width: 80px;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .mat-mdc-header-row {
+        display: none;
+    }
+
+    .mat-mdc-row { 
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        height: 100%;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .mat-mdc-cell {
+        font-size: 1em;
+        overflow: visible;
+        border: none;
+    }
 }
