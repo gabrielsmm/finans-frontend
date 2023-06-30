@@ -3,10 +3,24 @@
         <img class="img-fluid logo" src="assets/img/logo-alternativa.png" width="180">
         <p>Gerencie seu dinheiro de forma inteligente. Cadastre-se agora.</p>
         <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-            <input type="text" placeholder="Seu nome" formControlName="nome">
-            <input type="text" placeholder="E-mail" formControlName="email">
-            <input type="password" placeholder="Senha" formControlName="senha">
-            <input type="password" placeholder="Confirme sua senha" formControlName="confirmacaoSenha">
+            <input type="text" placeholder="Seu nome" formControlName="nome" required>
+            <input type="text" placeholder="E-mail" formControlName="email" required>
+            
+            <div class="container-senha">
+                <input [type]="showSenha ? 'text' : 'password'" placeholder="Senha" formControlName="senha" required>
+                <span class="senha" (click)="senha()">
+                    <i *ngIf="!showSenha" class="bi bi-eye"></i>
+                    <i *ngIf="showSenha" class="bi bi-eye-slash"></i>
+                </span>
+            </div>
+
+            <div class="container-senha">
+                <input [type]="showConfirmacaoSenha ? 'text' : 'password'" placeholder="Confirme sua senha" formControlName="confirmacaoSenha" required>
+                <span class="senha" (click)="confirmacaoSenha()">
+                    <i *ngIf="!showConfirmacaoSenha" class="bi bi-eye"></i>
+                    <i *ngIf="showConfirmacaoSenha" class="bi bi-eye-slash"></i>
+                </span>
+            </div>
 
             <div *ngIf="showErro" class="alert alert-danger">
                 {{msgErro}}

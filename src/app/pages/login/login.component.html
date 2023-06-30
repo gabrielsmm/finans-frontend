@@ -3,8 +3,15 @@
         <img class="img-fluid logo" src="assets/img/logo-alternativa.png" width="180">
         <p>Sua jornada financeira começa aqui. Entre para continuar.</p>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <input type="text" placeholder="E-mail" formControlName="email">
-            <input type="password" placeholder="Senha" formControlName="senha">
+            <input type="text" placeholder="E-mail" formControlName="email" required>
+            
+            <div class="container-senha">
+                <input [type]="showSenha ? 'text' : 'password'" placeholder="Senha" formControlName="senha" required>
+                <span class="senha" (click)="senha()">
+                    <i *ngIf="!showSenha" class="bi bi-eye"></i>
+                    <i *ngIf="showSenha" class="bi bi-eye-slash"></i>
+                </span>
+            </div>
 
             <div *ngIf="showErro" class="alert alert-danger">
                 E-mail ou senha incorretos

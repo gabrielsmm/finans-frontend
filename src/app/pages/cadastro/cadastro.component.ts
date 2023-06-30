@@ -22,6 +22,8 @@ export class CadastroComponent implements OnInit {
   public showErro: boolean = false;
   public showSucesso: boolean = false;
   public msgErro: string = '';
+  public showSenha: boolean = false;
+  public showConfirmacaoSenha: boolean = false;
   
   public cadastroForm = new FormGroup({
     nome: new FormControl(this.usuario.nome, Validators.required),
@@ -64,6 +66,14 @@ export class CadastroComponent implements OnInit {
 
       }
     });
+  }
+
+  senha() {
+    this.showSenha = !this.showSenha;
+  }
+
+  confirmacaoSenha() {
+    this.showConfirmacaoSenha = !this.showConfirmacaoSenha;
   }
 
 }

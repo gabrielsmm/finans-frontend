@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   public usuario: Usuario = new Usuario();
   public showErro: boolean = false;
+  public showSenha: boolean = false;
 
   public loginForm = new FormGroup({
     email: new FormControl(this.usuario.email, [Validators.required, Validators.email]),
@@ -54,6 +55,10 @@ export class LoginComponent implements OnInit {
 
       }
     });
+  }
+
+  senha() {
+    this.showSenha = !this.showSenha;
   }
 
 }

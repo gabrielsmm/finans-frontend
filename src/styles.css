@@ -119,6 +119,21 @@ input[type="submit"]:hover {
     color: #a0a0a0;
 }
 
+.container-senha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.senha {
+    font-size: 18px;
+    color: #139153;
+    position: absolute;
+    right: 30px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
 .snack-background-red {
     --mdc-snackbar-container-color: rgb(153, 50, 50);
     --mat-mdc-snack-bar-button-color: #ffffff;
