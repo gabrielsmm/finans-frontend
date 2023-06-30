@@ -11,7 +11,13 @@
                         <!-- <p *ngIf="possuiOrcamento()">Vigência: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p> -->
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
-                            <p>{{saldo | currency : 'BRL'}}</p>
+                            <div class="container-saldo">
+                                <p [ngClass]="{'blur' : showSaldo}">{{saldo | currency : 'BRL'}}</p>
+                                <span class="saldo" (click)="showSaldoClick()">
+                                    <i *ngIf="!showSaldo" class="bi bi-eye"></i>
+                                    <i *ngIf="showSaldo" class="bi bi-eye-slash"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <p *ngIf="!possuiOrcamento()" class="pt-2">Não encontramos nenhum orçamento vigente. Adicione agora mesmo!</p>
@@ -35,15 +41,15 @@
                         <p>Acesso rápido</p>
                     </div>
                     <div class="acesso-rapido">
-                        <div class="btn-acesso-rapido" (click)="openDialogOrcamento()">
+                        <div class="btn-acesso-rapido" (click)="openDialogOrcamento()" matTooltip="Adicionar orçamento">
                             <i class="bi bi-currency-dollar orcamento"></i>
                             <p>ORÇAMENTO</p>
                         </div>     
-                        <div *ngIf="possuiOrcamento()" class="btn-acesso-rapido" (click)="openDialogTransacao(true)">
+                        <div *ngIf="possuiOrcamento()" class="btn-acesso-rapido" (click)="openDialogTransacao(true)" matTooltip="Adicionar receita">
                             <i class="bi bi-plus-circle receita"></i>
                             <p>RECEITA</p>
                         </div>
-                        <div *ngIf="possuiOrcamento()"  class="btn-acesso-rapido" (click)="openDialogTransacao(false)">
+                        <div *ngIf="possuiOrcamento()"  class="btn-acesso-rapido" (click)="openDialogTransacao(false)" matTooltip="Adicionar despesa">
                             <i class="bi bi-dash-circle despesa"></i>
                             <p>DESPESA</p>
                         </div>     

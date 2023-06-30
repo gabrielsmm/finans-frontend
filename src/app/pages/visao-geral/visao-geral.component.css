@@ -50,6 +50,21 @@
     border-left: 1px solid #ccc;
 }
 
+.blur {
+    filter: blur(5px);
+    user-select: none;
+}
+
+.container-saldo {
+    display: flex;
+}
+
+.saldo {
+    margin-left: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
 /* Ajustes */
 @media (max-width: 320.98px) {
     .borda {

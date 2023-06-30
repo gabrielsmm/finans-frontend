@@ -13,6 +13,7 @@ import { Orcamento } from 'src/app/models/Orcamento.model';
 export class VisaoGeralComponent implements OnInit {
 
   public saldo: number = 0;
+  public showSaldo: boolean = false;
 
   constructor(public appService: AppService,
               private dialog: MatDialog) {
@@ -60,6 +61,10 @@ export class VisaoGeralComponent implements OnInit {
 
   private calcularSaldo(orcamento: Orcamento) {
     if (orcamento) this.saldo = orcamento.valor + orcamento.valorReceitas - orcamento.valorDespesas;
+  }
+
+  showSaldoClick() {
+    this.showSaldo = !this.showSaldo;
   }
   
 }

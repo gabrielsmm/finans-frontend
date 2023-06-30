@@ -7,6 +7,7 @@ import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-transacao.module';
 import { DialogOrcamentoModule } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -20,6 +21,7 @@ import { DialogOrcamentoModule } from 'src/app/dialogs/dialog-orcamento/dialog-o
     HeaderModule,
     FooterModule,
     MatCardModule,
+    MatTooltipModule,
     DialogTransacaoModule,
     DialogOrcamentoModule
   ]
