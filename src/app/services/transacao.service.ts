@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 import { Transacao } from '../models/Transacao.model';
 
 export class Filtro {
@@ -57,5 +58,11 @@ export class TransacaoService {
     const url = `${this.baseUrl}/transacoes/${id}`;
     return this.http.delete<void>(url);
   }
-  
+
+  getSomaValoresPorPeriodo(tipoPeriodo: number = 1): Observable<any> {
+    const url = `${this.baseUrl}/transacoes/soma-valores-por-periodo`;
+    let params = new HttpParams().append('tipoPeriodo', tipoPeriodo);
+    return this.http.get<any>(url, { params });
+  }
+
 }

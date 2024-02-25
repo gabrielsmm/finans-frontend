@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<div class="container">
+    <mat-card class="card-principal">
+        <h2>Relatórios</h2>
+        <div>
+            <canvas baseChart class="chart"
+                    [data]="barChartData"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [type]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+
+            <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button> -->
+        </div>
+    </mat-card>
+</div>
+
+<app-footer></app-footer>

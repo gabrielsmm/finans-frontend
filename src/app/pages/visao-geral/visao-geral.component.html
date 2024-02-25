@@ -12,7 +12,7 @@
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
                             <div class="container-saldo">
-                                <p [ngClass]="{'blur' : showSaldo}">{{saldo | currency : 'BRL'}}</p>
+                                <p [ngClass]="{'blur' : !showSaldo}">{{saldo | currency : 'BRL'}}</p>
                                 <span class="saldo" (click)="showSaldoClick()">
                                     <i *ngIf="!showSaldo" class="bi bi-eye"></i>
                                     <i *ngIf="showSaldo" class="bi bi-eye-slash"></i>
@@ -30,10 +30,10 @@
                             <p>despesas</p>
                             <p class="despesa">{{appService.orcamentoVigente.valorDespesas | currency : 'BRL'}}</p>
                         </mat-card>
-                        <!-- <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
+                        <mat-card [routerLink]="['/relatorios']" class="card-acoes card-relatorios">
                             <p>ver relatórios</p>
-                            <span><i class="bi bi-graph-up-arrow"></i></span>
-                        </mat-card> -->
+                            <span class="receita"><i class="bi bi-graph-up-arrow"></i></span>
+                        </mat-card>
                     </div>
                 </div>
                 <div class="col-md-4 borda">
@@ -44,7 +44,7 @@
                         <div class="btn-acesso-rapido" (click)="openDialogOrcamento()" matTooltip="Adicionar orçamento">
                             <i class="bi bi-currency-dollar orcamento"></i>
                             <p>ORÇAMENTO</p>
-                        </div>     
+                        </div>
                         <div *ngIf="possuiOrcamento()" class="btn-acesso-rapido" (click)="openDialogTransacao(true)" matTooltip="Adicionar receita">
                             <i class="bi bi-plus-circle receita"></i>
                             <p>RECEITA</p>
@@ -52,7 +52,7 @@
                         <div *ngIf="possuiOrcamento()"  class="btn-acesso-rapido" (click)="openDialogTransacao(false)" matTooltip="Adicionar despesa">
                             <i class="bi bi-dash-circle despesa"></i>
                             <p>DESPESA</p>
-                        </div>     
+                        </div>
                     </div>
                 </div>
             </div>
