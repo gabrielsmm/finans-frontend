@@ -1,3 +1,3 @@
 export const environment = {
-    baseUrl: 'https://finans-api.up.railway.app'
+    baseUrl: 'https://finans-api.onrender.com'
 };
