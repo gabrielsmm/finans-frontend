@@ -1,11 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RelatoriosComponent } from './relatorios.component';
-import { RelatoriosRoutingModule } from './relatorios-routing.module';
-import { HeaderModule } from 'src/app/components/header/header.module';
-import { FooterModule } from 'src/app/components/footer/footer.module';
+import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { NgChartsModule } from 'ng2-charts';
+import {
+  BarChartTransacoesPeriodoModule,
+} from 'src/app/charts/bar-chart-transacoes-periodo/bar-chart-transacoes-periodo.module';
+import { FooterModule } from 'src/app/components/footer/footer.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
+
+import {
+  PieChartTransacoesCategoriaModule,
+} from './../../charts/pie-chart-transacoes-categoria/pie-chart-transacoes-categoria.module';
+import { RelatoriosRoutingModule } from './relatorios-routing.module';
+import { RelatoriosComponent } from './relatorios.component';
 
 
 
@@ -19,8 +25,8 @@ import { NgChartsModule } from 'ng2-charts';
     HeaderModule,
     FooterModule,
     MatCardModule,
-
-    NgChartsModule
+    BarChartTransacoesPeriodoModule,
+    PieChartTransacoesCategoriaModule
   ]
 })
 export class RelatoriosModule { }

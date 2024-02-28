@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Transacao } from '../models/Transacao.model';
+import { AppService } from '../app.service';
 
 export class Filtro {
   page: number;
@@ -28,7 +29,8 @@ export class TransacaoService {
   private baseUrl: string = environment.baseUrl;
   public filtro: Filtro = new Filtro();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private appService: AppService) { }
 
   findById(id: any): Observable<Transacao>{
     const url = `${this.baseUrl}/transacoes/${id}`;
@@ -62,6 +64,15 @@ export class TransacaoService {
   getSomaValoresPorPeriodo(tipoPeriodo: number = 1): Observable<any> {
     const url = `${this.baseUrl}/transacoes/soma-valores-por-periodo`;
     let params = new HttpParams().append('tipoPeriodo', tipoPeriodo);
+    return this.http.get<any>(url, { params });
+  }
+
+  getSomaValoresPorCategoria(tipoCategoria?: number): Observable<any> {
+    const url = `${this.baseUrl}/transacoes/soma-valores-por-categoria`;
+    let params = new HttpParams();
+    if (!this.appService.isNullOrUndefined(tipoCategoria)) {
+      params = params.append('tipoCategoria', Number(tipoCategoria));
+    }
     return this.http.get<any>(url, { params });
   }
 

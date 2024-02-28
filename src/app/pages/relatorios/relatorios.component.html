@@ -3,17 +3,26 @@
 <div class="container">
     <mat-card class="card-principal">
         <h2>Relatórios</h2>
-        <div>
-            <canvas baseChart class="chart"
-                    [data]="barChartData"
-                    [options]="barChartOptions"
-                    [plugins]="barChartPlugins"
-                    [type]="barChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
-            </canvas>
-
-            <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button> -->
+        <div class="row">
+          <div class="col-md-12">
+            <app-bar-chart-transacoes-periodo
+              [altura]="'500px'">
+            </app-bar-chart-transacoes-periodo>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <app-pie-chart-transacoes-categoria
+              [tipoCategoria]="1"
+              [altura]="'300px'">
+            </app-pie-chart-transacoes-categoria>
+          </div>
+          <div class="col-md-6">
+            <app-pie-chart-transacoes-categoria
+              [tipoCategoria]="2"
+              [altura]="'300px'">
+            </app-pie-chart-transacoes-categoria>
+          </div>
         </div>
     </mat-card>
 </div>
