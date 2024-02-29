@@ -19,7 +19,7 @@
                 <mat-chip-option class="receita" (selectionChange)="filtrarPorTipo($event.selected ? 1 : -1)">Receita</mat-chip-option>
                 <mat-chip-option class="despesa" (selectionChange)="filtrarPorTipo($event.selected ? 2 : -1)">Despesa</mat-chip-option>
             </mat-chip-listbox>
-            <app-filtro-mes-ano 
+            <app-filtro-mes-ano
             [(mes)]="transacaoService.filtro.mes"
             [(ano)]="transacaoService.filtro.ano"
             (mesAnoChange)="refresh()"></app-filtro-mes-ano>
@@ -78,7 +78,7 @@
 
             <ng-container matColumnDef="valor">
                 <th mat-header-cell *matHeaderCellDef>Valor</th>
-                <td mat-cell *matCellDef="let transacao" 
+                <td mat-cell *matCellDef="let transacao"
                 [ngClass]="{'receita': isReceita(transacao), 'despesa': !isReceita(transacao)}"
                 >
                 <span class="texto-mobile">Valor:</span>
@@ -91,7 +91,7 @@
         </table>
         <div class="sem-registros" *ngIf="!possuiRegistros()">
             <i class="bi bi-exclamation-circle-fill"></i>
-            <p>Nenhuma movimentação no período</p>
+            <p>Nenhuma movimentação encontrada</p>
         </div>
     </mat-card>
 </div>

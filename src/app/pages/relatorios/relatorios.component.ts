@@ -13,7 +13,17 @@ export class RelatoriosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.appService.validarLogin();
+    this.appService.validarLogin().subscribe((loginValido) => {
+      if (loginValido) this.appService.getOrcamentoVigente().subscribe();
+    });
+  }
+
+  public possuiReceitas(): boolean {
+    return this.appService.possuiReceitas();
+  }
+
+  public possuiDespesas(): boolean {
+    return this.appService.possuiDespesas();
   }
 
 }

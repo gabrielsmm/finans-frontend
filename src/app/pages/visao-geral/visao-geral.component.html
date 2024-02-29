@@ -8,7 +8,7 @@
                 <div class="col-md-8">
                     <div class="conteudo-principal d-flex align-items-start justify-content-between">
                         <p>Olá, <b>{{appService.usuarioLogado.nome}}</b></p>
-                        <!-- <p *ngIf="possuiOrcamento()">Vigência: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p> -->
+                        <p *ngIf="possuiOrcamento()">Orçamento vigente: {{appService.orcamentoVigente.dataInicio | date: 'dd/MM/yyyy'}} - {{appService.orcamentoVigente.dataFim | date: 'dd/MM/yyyy'}}</p>
                         <div *ngIf="possuiOrcamento()">
                             <p>saldo geral</p>
                             <div class="container-saldo">
@@ -57,6 +57,29 @@
                 </div>
             </div>
         </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="possuiOrcamento() && (possuiReceitas() || possuiDespesas())" class="mt-3">
+      <mat-card-content>
+        <div class="row d-flex justify-content-center">
+          <div *ngIf="possuiReceitas()" class="col-md-6">
+            <app-pie-chart-transacoes-categoria
+              #pieChartReceitas
+              [tipoCategoria]="1"
+              [titulo]="'Receitas do mês atual'"
+              [altura]="'350px'">
+            </app-pie-chart-transacoes-categoria>
+          </div>
+          <div *ngIf="possuiDespesas()" class="col-md-6">
+            <app-pie-chart-transacoes-categoria
+              #pieChartDespesas
+              [tipoCategoria]="2"
+              [titulo]="'Despesas do mês atual'"
+              [altura]="'350px'">
+            </app-pie-chart-transacoes-categoria>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-card>
 </div>
 

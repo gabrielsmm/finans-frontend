@@ -1,13 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisaoGeralComponent } from './visao-geral.component';
-import { HeaderModule } from 'src/app/components/header/header.module';
-import { FooterModule } from 'src/app/components/footer/footer.module';
-import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
+import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-transacao.module';
-import { DialogOrcamentoModule } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+  PieChartTransacoesCategoriaModule,
+} from 'src/app/charts/pie-chart-transacoes-categoria/pie-chart-transacoes-categoria.module';
+import { FooterModule } from 'src/app/components/footer/footer.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
+import { DialogOrcamentoModule } from 'src/app/dialogs/dialog-orcamento/dialog-orcamento.module';
+import { DialogTransacaoModule } from 'src/app/dialogs/dialog-transacao/dialog-transacao.module';
+
+import { VisaoGeralRoutingModule } from './visao-geral-routing.module';
+import { VisaoGeralComponent } from './visao-geral.component';
 
 
 
@@ -23,7 +27,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     MatTooltipModule,
     DialogTransacaoModule,
-    DialogOrcamentoModule
+    DialogOrcamentoModule,
+    PieChartTransacoesCategoriaModule
   ]
 })
 export class VisaoGeralModule { }

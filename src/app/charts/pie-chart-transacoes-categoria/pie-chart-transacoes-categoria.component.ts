@@ -13,12 +13,11 @@ import { TransacaoService } from 'src/app/services/transacao.service';
 export class PieChartTransacoesCategoriaComponent implements OnInit {
 
   @Input() public tipoCategoria: number = 1;
+  @Input() public titulo: string = '';
   @Input() public largura: string = '100%';
   @Input() public altura: string = '100%';
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-
-  public titulo: string;
 
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -60,7 +59,6 @@ export class PieChartTransacoesCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titulo = (this.tipoCategoria === 1 ? 'Receitas' : 'Despesas') + ' por categoria';
     this.getSomaValoresPorCategoria(this.tipoCategoria);
   }
 
@@ -83,6 +81,10 @@ export class PieChartTransacoesCategoriaComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+
+  public refresh(): void {
+    this.getSomaValoresPorCategoria(this.tipoCategoria);
   }
 
 }

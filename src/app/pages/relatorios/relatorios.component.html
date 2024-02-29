@@ -3,27 +3,37 @@
 <div class="container">
     <mat-card class="card-principal">
         <h2>Relatórios</h2>
-        <div class="row">
-          <div class="col-md-12">
-            <app-bar-chart-transacoes-periodo
-              [altura]="'500px'">
-            </app-bar-chart-transacoes-periodo>
+        <div *ngIf="possuiReceitas() || possuiDespesas(); else elseBlock">
+          <div class="row">
+            <div class="col-md-12">
+              <app-bar-chart-transacoes-periodo
+                [altura]="'500px'">
+              </app-bar-chart-transacoes-periodo>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div *ngIf="possuiReceitas()" class="col-md-6">
+              <app-pie-chart-transacoes-categoria
+                [tipoCategoria]="1"
+                [titulo]="'Receitas por categoria'"
+                [altura]="'350px'">
+              </app-pie-chart-transacoes-categoria>
+            </div>
+            <div *ngIf="possuiDespesas()" class="col-md-6">
+              <app-pie-chart-transacoes-categoria
+                [tipoCategoria]="2"
+                [titulo]="'Despesas por categoria'"
+                [altura]="'350px'">
+              </app-pie-chart-transacoes-categoria>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <app-pie-chart-transacoes-categoria
-              [tipoCategoria]="1"
-              [altura]="'300px'">
-            </app-pie-chart-transacoes-categoria>
+        <ng-template #elseBlock>
+          <div class="sem-registros">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <p>Movimentação atual não encontrada</p>
           </div>
-          <div class="col-md-6">
-            <app-pie-chart-transacoes-categoria
-              [tipoCategoria]="2"
-              [altura]="'300px'">
-            </app-pie-chart-transacoes-categoria>
-          </div>
-        </div>
+        </ng-template>
     </mat-card>
 </div>
 

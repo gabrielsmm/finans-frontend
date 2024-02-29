@@ -23,7 +23,7 @@ export class AppService {
               private _snack: MatSnackBar,
               private http: HttpClient,
               private orcamentoService: OrcamentoService) {
-    
+
   }
 
   validarLogin(): Observable<boolean> {
@@ -77,6 +77,14 @@ export class AppService {
 
   possuiOrcamento(): boolean {
     return !this.isNullOrUndefined(this.orcamentoVigente);
+  }
+
+  public possuiReceitas(): boolean {
+    return this.possuiOrcamento() && this.orcamentoVigente.valorReceitas > 0.001;
+  }
+
+  public possuiDespesas(): boolean {
+    return this.possuiOrcamento() && this.orcamentoVigente.valorDespesas > 0.001;
   }
 
   mensagem(str: string){
@@ -153,5 +161,5 @@ export class AppService {
     const url = `${this.baseUrl}/usuarios/usuario-logado`;
     return this.http.get<Usuario>(url);
   }
-  
+
 }
